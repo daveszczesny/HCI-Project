@@ -1,8 +1,8 @@
 function About()
 {
-    return (
+    return(
         <p>About page</p>
-    );
+    )
 }
 
 

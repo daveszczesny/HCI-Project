@@ -1,0 +1,24 @@
+body {
+    background-color: #C5FDFA;
+}
+
+
+
+.para-container
+{
+    margin-top: 40%;
+    position: absolute;
+    left: 50%;
+}
+
+.para-container p{
+    font-size: 30px;
+}
+
+img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 50%;
+    width: auto;
+}
