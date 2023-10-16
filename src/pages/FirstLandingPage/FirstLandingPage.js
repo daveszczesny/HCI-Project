@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
 import VisitedCookie from "../../components/VisitedCookie.js";
 import MrDoctor from "../../Resources/Images/MrDoctor.png";
-
-
+import FirstTimeUser from "../../components/FirstTimeUser.js";
 import './FirstLandingPage.css';
 
 const FirstLandingPage = () => {
@@ -14,19 +14,10 @@ const FirstLandingPage = () => {
             {hasVisited ? (
                 <p>Welcome back!</p>
             ) : (
-                <div>
-                    <div className="welcome-container">
-                        <div className="h1-container">
-                            <h1>Welcome to MediGuardian</h1>
-                        </div>
-                        <div className="para-container">
-                            <p>Your personal medical help buddy, to keep ya' on track</p>
-                        </div>
-                    </div>
-                    <img src={MrDoctor} alt="Doctor image" />
-                </div>
+                <FirstTimeUser />
             )}
         </div>
+
     );
 
 };
