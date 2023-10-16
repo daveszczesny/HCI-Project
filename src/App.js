@@ -1,13 +1,8 @@
-import logo from './logo.svg';
-import ReactDom from 'react-dom/client';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/home/Home.js';
-<<<<<<< HEAD
-import About from './pages/About/About';
-=======
-import About from './pages/about/About.js'
->>>>>>> e6eca6603b48fb48c6323af38262a5fe7c8068b9
+import ReactDom from 'react-dom/client';
+import Home from './pages/LandingPage/Home.js';
+import About from './pages/AboutPage/About.js'
 
 function App()
 {
