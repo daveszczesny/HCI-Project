@@ -1,0 +1,255 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-heading {
+    display: flex;
+    justify-content: left;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 380px;
+    height: auto;
+
+    border: 0;
+    border-radius: 15px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0px 0px 3px 0.1px;
+
+}
+
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+}
+
+.input-container input {
+    display: flex;
+
+    border: 1px solid azure;
+    border-radius: 15px;
+
+    text-decoration: none;
+
+    padding: 18px;
+    padding-left: 40px;
+    padding-right: 40px;
+
+    font-size: large;
+
+}
+
+
+.input-container input:focus {
+    border: 1px solid azure;
+    outline: none;
+}
+
+.first-name-section {
+    margin-top: 50px;
+}
+
+.first-name-section label {
+    position: absolute;
+    transform: translateY(-4.5vh);
+    margin-left: 2vh;
+
+    font-size: 22px;
+
+    color: grey;
+
+}
+
+.first-name-section input:focus~label {
+    animation: moveUP 0.2s ease forwards;
+}
+
+.first-name-section input:focus~label,
+.first-name-section input:not(:placeholder-shown)~label {
+    transform: translate(-2vh, -9.5vh);
+    font-size: 20px;
+    color: ghostwhite;
+    background-color: cadetblue;
+    border-radius: 15px;
+    padding: 5px 15px 5px 15px;
+}
+
+
+@keyframes moveUP {
+    from {
+        transform: translate(0, -4.5vh);
+    }
+
+    to {
+        transform: translate(-2vh, -9.5vh);
+    }
+}
+
+.email-section {
+    margin-top: 50px;
+}
+
+.email-section label {
+    position: absolute;
+    transform: translateY(-4.5vh);
+    margin-left: 2vh;
+
+    font-size: 22px;
+
+    color: grey;
+
+}
+
+.email-section input:focus~label {
+    animation: moveUP 0.2s ease forwards;
+}
+
+.email-section input:focus~label,
+.email-section input:not(:placeholder-shown)~label {
+    transform: translate(-2vh, -9.5vh);
+    font-size: 20px;
+    color: ghostwhite;
+    background-color: cadetblue;
+    border-radius: 15px;
+    padding: 5px 15px 5px 15px;
+}
+
+
+.password-section {
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.password-section label {
+    position: absolute;
+    transform: translateY(-4.5vh);
+    margin-left: 2vh;
+
+    font-size: 22px;
+
+    color: grey;
+
+}
+
+.password-section input:focus~label {
+    animation: moveUP 0.2s ease forwards;
+
+}
+
+.password-section input:focus~label,
+.password-section input:not(:placeholder-shown)~label {
+    transform: translate(-2vh, -9.5vh);
+    font-size: 20px;
+    color: ghostwhite;
+    background-color: cadetblue;
+    border-radius: 15px;
+    padding: 5px 15px 5px 15px;
+}
+
+.signup-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 15px;
+}
+
+.signup-button-container button {
+    padding-left: 110px;
+    padding-right: 110px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size: 22px;
+
+    border: none;
+
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 2px 0.2px;
+
+
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+
+}
+
+.separater-line {
+    margin: 40px;
+    border: none;
+    border-top: 1px solid grey;
+    opacity: 0.5;
+}
+
+.switch-forms-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-forms-container button {
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    font-size:20px;
+
+    border: none;
+
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 2px 0.2px;
+    background-color:rgba(112,128,144,0.4);
+    color: black;
+}
+
+
+
+.alt-view {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeInOut 5s steps(40) ease forwards;
+}
+
+@keyframes slideUp{
+    0%{
+        height: 100%;
+        opacity: 1;
+        visibility: visible;
+    }
+    25%{
+        height: 90%;
+        opacity: 0.8;
+    }
+    50%{
+        height: 50%;
+        opacity: 0.5;
+    }
+    75%{
+        height: 25%;
+        opacity: 0.2;
+    }
+    100%{
+        height: 0;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
