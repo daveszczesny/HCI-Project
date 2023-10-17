@@ -2,7 +2,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: absolute;
+    height: 100%;
 }
+
 
 .login-heading {
     display: flex;
@@ -13,10 +17,14 @@ body {
 }
 
 .form-container {
-    background-color: rgba(0, 0, 0, 0.1);
-    width: 380px;
-    height: auto;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 90vw;
+    height: auto;
     border: 0;
     border-radius: 15px;
 
@@ -34,7 +42,7 @@ body {
 
     align-items: center;
 
-    padding: 10px;
+    padding: 1vh;
 
     box-sizing: border-box;
 }
@@ -47,9 +55,9 @@ body {
 
     text-decoration: none;
 
-    padding: 18px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 2vh;
+    padding-left: 8vw;
+    padding-right: 8vw;
 
     font-size: large;
 
@@ -62,15 +70,15 @@ body {
 }
 
 .first-name-section {
-    margin-top: 50px;
+    margin-top: 5vh;
 }
 
 .first-name-section label {
     position: absolute;
-    transform: translateY(-4.5vh);
+    transform: translateY(-4.7vh);
     margin-left: 2vh;
 
-    font-size: 22px;
+    font-size: 1.2em;
 
     color: grey;
 
@@ -83,7 +91,7 @@ body {
 .first-name-section input:focus~label,
 .first-name-section input:not(:placeholder-shown)~label {
     transform: translate(-2vh, -9.5vh);
-    font-size: 20px;
+    font-size: 1em;
     color: ghostwhite;
     background-color: cadetblue;
     border-radius: 15px;
@@ -93,7 +101,7 @@ body {
 
 @keyframes moveUP {
     from {
-        transform: translate(0, -4.5vh);
+        transform: translate(0, -4.7vh);
     }
 
     to {
@@ -102,15 +110,15 @@ body {
 }
 
 .email-section {
-    margin-top: 50px;
+    margin-top: 5vh;
 }
 
 .email-section label {
     position: absolute;
-    transform: translateY(-4.5vh);
+    transform: translateY(-4.7vh);
     margin-left: 2vh;
 
-    font-size: 22px;
+    font-size: 1.2em;
 
     color: grey;
 
@@ -123,7 +131,7 @@ body {
 .email-section input:focus~label,
 .email-section input:not(:placeholder-shown)~label {
     transform: translate(-2vh, -9.5vh);
-    font-size: 20px;
+    font-size: 1em;
     color: ghostwhite;
     background-color: cadetblue;
     border-radius: 15px;
@@ -132,16 +140,16 @@ body {
 
 
 .password-section {
-    margin-top: 50px;
-    margin-bottom: 25px;
+    margin-top: 5vh;
+    margin-bottom: 2.5vh;
 }
 
 .password-section label {
     position: absolute;
-    transform: translateY(-4.5vh);
+    transform: translateY(-4.7vh);
     margin-left: 2vh;
 
-    font-size: 22px;
+    font-size: 1.2em;
 
     color: grey;
 
@@ -155,7 +163,7 @@ body {
 .password-section input:focus~label,
 .password-section input:not(:placeholder-shown)~label {
     transform: translate(-2vh, -9.5vh);
-    font-size: 20px;
+    font-size: 1em;
     color: ghostwhite;
     background-color: cadetblue;
     border-radius: 15px;
@@ -167,16 +175,16 @@ body {
     justify-content: center;
     align-items: center;
 
-    padding: 15px;
+    padding: 3vw;
 }
 
 .signup-button-container button {
-    padding-left: 110px;
-    padding-right: 110px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 25vw;
+    padding-right: 25vw;
+    padding-top: 3vw;
+    padding-bottom: 3vw;
 
-    font-size: 22px;
+    font-size: 1.2em;
 
     border: none;
 
@@ -191,7 +199,7 @@ body {
 }
 
 .separater-line {
-    margin: 40px;
+    margin: 4vh;
     border: none;
     border-top: 1px solid grey;
     opacity: 0.5;
@@ -204,12 +212,12 @@ body {
 }
 
 .switch-forms-container button {
-    padding-left: 80px;
-    padding-right: 80px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    padding-top: 3vw;
+    padding-bottom: 3vw;
 
-    font-size: 20px;
+    font-size: 1em;
 
     border: none;
 
@@ -225,7 +233,7 @@ body {
 .alt-view {
     height: 0;
     opacity: 0;
-    margin-bottom: 80px;
+    margin-bottom: 8vh;
     animation: slideUp 0.25s linear forwards;
 }
 
@@ -237,12 +245,12 @@ body {
 
 @keyframes slideUp {
     0% {
-        height: 220px;
+        height: 18vh;
         opacity: 1;
     }
 
     50% {
-        height: 100px;
+        height: 10vh;
         opacity: 0.8;
     }
 
@@ -306,7 +314,7 @@ body {
     }
 
     50% {
-        height: 500px;
+        height: 50vh;
         opacity: 0.5;
     }
 
@@ -315,3 +323,4 @@ body {
         opacity: 1;
     }
 }
+
