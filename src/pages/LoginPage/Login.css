@@ -209,14 +209,14 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
 
-    font-size:20px;
+    font-size: 20px;
 
     border: none;
 
     border-radius: 10px;
     box-sizing: border-box;
     box-shadow: 0px 0px 2px 0.2px;
-    background-color:rgba(112,128,144,0.4);
+    background-color: rgba(112, 128, 144, 0.4);
     color: black;
 }
 
@@ -225,31 +225,93 @@ body {
 .alt-view {
     height: 0;
     opacity: 0;
-    visibility: hidden;
-    animation: fadeInOut 5s steps(40) ease forwards;
+    margin-bottom: 80px;
+    animation: slideUp 0.25s linear forwards;
 }
 
-@keyframes slideUp{
-    0%{
-        height: 100%;
+.alt-view button,
+.alt-view label,
+.alt-view input {
+    display: none;
+}
+
+@keyframes slideUp {
+    0% {
+        height: 220px;
         opacity: 1;
-        visibility: visible;
     }
-    25%{
-        height: 90%;
+
+    50% {
+        height: 100px;
         opacity: 0.8;
     }
-    50%{
-        height: 50%;
-        opacity: 0.5;
-    }
-    75%{
-        height: 25%;
-        opacity: 0.2;
-    }
-    100%{
+
+    100% {
         height: 0;
         opacity: 0;
-        visibility: hidden;
+        margin-bottom: 80px;
+    }
+}
+
+.signup-form-hidden-button-container-hide button {
+    display: none;
+}
+
+.signup-form-hidden-button-container-show {
+    display: flex;
+    animation: showButton 0.4s ease-in forwards;
+}
+
+
+@keyframes showButton {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+.unalt-view {
+    height: 100%;
+    opacity: 1;
+    animation: appear 0.7s ease-out forwards;
+}
+
+.unalt-view label,
+.unalt-view button,
+.unalt-view input {
+    opacity: 1;
+
+    animation: appearSections 0.6s ease-out forwards;
+}
+
+@keyframes appearSections {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes appear {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    50% {
+        height: 500px;
+        opacity: 0.5;
+    }
+
+    100% {
+        height: 100%;
+        opacity: 1;
     }
 }
