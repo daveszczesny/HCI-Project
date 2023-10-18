@@ -1,12 +1,19 @@
-body {
+/* .login-page {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     position: absolute;
     height: 100%;
-}
+} */
 
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .login-heading {
     display: flex;
@@ -314,7 +321,7 @@ body {
     }
 
     50% {
-        height: 50vh;
+        height: 50%;
         opacity: 0.5;
     }
 

@@ -20,7 +20,7 @@ const FirstTimeUser = () => {
             if (index > targetText.length) {
                 clearInterval(typingInterval);
     
-                document.querySelector('.button-container').style.animation = 'flyInFromRight 1.5s ease-in forwards';
+                document.querySelector('.button-container').style.animation = 'flyInFromRight 1s ease-in forwards';
     
             }
     

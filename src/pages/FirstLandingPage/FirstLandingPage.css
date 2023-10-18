@@ -18,16 +18,16 @@ body{
 
 .para-container
 {
-    font-size: 35px;
-    margin-top: 30%;
+    font-size: 1.4em;
+    margin-top: 20vh;
     position: absolute;
     left: 50%;
-    margin-right: 3px;
+    max-width: 15ch;
     /* white-space: pre-line; */
 }
 
 .para-container p{
-    font-size: 30px;
+    font-size: 0.2em;
     white-space: nowrap;
     overflow: hidden;
     border-right: 2px solid #000;
