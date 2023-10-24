@@ -5,18 +5,17 @@ import About from './pages/AboutPage/About.js'
 import FirstLandingPage from './pages/FirstLandingPage/FirstLandingPage.js'
 import LoginPage from './pages/LoginPage/Login';
 import appFirebase from './FirebaseApp';
-
+import Dashboard from './pages/Dashboard/Dashboard';
+import AddMedication from './pages/AddMedication/AddMedication';
 function App() {
-
-  // appFirebase();
-
-  console.log(process.env.REACT_APP_FIREBASE_APIKEY);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<FirstLandingPage />} />
-        <Route path="/Login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/add-medications" element={<AddMedication />} />
       </Routes>
     </BrowserRouter>
   );
