@@ -1,0 +1,71 @@
+
+
+.add-medication-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 90vw;
+    height: auto;
+    border: 0;
+    border-radius: 15px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0px 0px 3px 0.1px;
+
+    margin-top: 20vh;
+
+
+}
+
+.autocomplete-container {
+    margin: 5vh 5vh 2vh 5vh;
+}
+
+
+.autocomplete-form {
+    background-color: azure;
+    border-radius: 15px;
+    text-decoration: none;
+
+    outline: none;
+    font-size: large;
+}
+
+
+
+.add-medication-para-container {
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+.add-medication-para-container input {
+
+
+    border: 1px solid azure;
+    border-radius: 15px;
+
+    text-decoration: none;
+    padding: 2vw;
+    width: 5ch;
+    text-align: center;
+
+}
+
+.add-medication-reminder-section {
+   
+
+    display: flex;
+
+    margin-left: 3.5vh;
+    margin-right: 2vh;
+
+}
+
+.add-medication-reminder-section .span-para{
+    font-size: 1em;
+}

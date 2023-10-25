@@ -7,15 +7,12 @@ import GetDocViaEmail from "../../script/firestore_doc_viaemail";
 
 const Dashboard = () => {
     const [authenticated, setauthenticated] = useState(null);
-
     const [isUserNew, setUserNew] = useState(true);
     const navigate = useNavigate();
-
-    
+    const [typedText, setTypedText] = useState('');
 
     let targetText = "Hi I'm Nurse Kelly. I see that we don't have your medications on record. How about we add them now?"
 
-    const [typedText, setTypedText] = useState('');
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("authenticated");
