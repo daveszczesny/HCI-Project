@@ -1,6 +1,5 @@
 import './Stats.css';
 import React, { useEffect, useState } from 'react';
-import Firebase from 'firebase-library';
 import CanvasJSReact from '@canvasjs/react-charts';
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -10,18 +9,18 @@ function Stats() {
     const [prescriptions, prescritpionStats] = useState([]);
 
 
-    useEffect(() => {
-        const fetch = async () => {
-            try {
-                const prescritpionData = await Firebase.getPrescriptionData();
-                setPrescriptions(prescritpionData);
-            } catch (error) {
-                console.error("Error fetching Prescription Data: ", error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetch = async () => {
+    //         try {
+    //             const prescritpionData = await Firebase.getPrescriptionData();
+    //             setPrescriptions(prescritpionData);
+    //         } catch (error) {
+    //             console.error("Error fetching Prescription Data: ", error);
+    //         }
+    //     };
 
-        fetch();
-    }, []);
+    //     fetch();
+    // }, []);
 
 
 
