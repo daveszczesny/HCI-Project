@@ -1,0 +1,40 @@
+/* WeeklyCalendar.css */
+.weekly-calendar {
+    border-collapse: collapse;
+    background-color: rgba(177, 210, 250, 1);   
+}
+
+.weekly-calendar th {
+  border: 1px solid black;
+  text-align: center;
+  width: 120px; 
+  height: 25px; 
+} 
+
+.weekly-calendar td {
+  border: 1px solid black;
+  border-bottom: 0;
+  text-align: center;
+  width: 120px; 
+  height: 103px; 
+}
+
+.weekly-calendar th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.weekly-calendar .events {
+  /* Style for event container */
+  height: 100%;
+  background-color: rgba(177, 210, 250, 1);
+}
+
+.weekly-calendar .event {
+  /* Style for individual events */
+  font-size: small;
+}
+
+.weekly-calendar .no-events {
+  color: #999;
+}
