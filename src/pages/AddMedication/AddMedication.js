@@ -10,57 +10,20 @@ const AddMedication = () => {
 
     const [drugName, setDrugName] = useState("");
     const [optionList, setOptionList] = useState([""]);
-    const [selectedValue, setSelectedValue] = useState(null);
-    const [dailyDosage, setDailyDosage] = useState(null);
-    const [times, setTime] = useState("1");
+    const [medications, setMedications] = useState([null]); // Store selected medications for each form
 
 
-    var timeHourOptions = [
-        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09",
-        "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
-        "20", "21", "22", "23"
-    ];
-
-    var timeMinOptions = [
-        "00", "01", "02", "03", "04", "05", "06", "07", "08", "09",
-        "10", "11", "12", "13", "14", "15", "16", "17", "18", "19",
-        "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
-        "30", "31", "32", "33", "34", "35", "36", "37", "38", "39",
-        "40", "41", "42", "43", "44", "45", "46", "47", "48", "49",
-        "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"
-    ];
-
-    const [hour, setHour] = useState(Array(times).fill(null));
-    const [min, setMin] = useState(Array(times).fill(null));
-
-    const handleTimeChange = (index, field, value) => {
-        if (field === 'hour') {
-            const newHour = [...hour];
-            newHour[index] = value;
-            setHour(newHour);
-        } else if (field === 'min') {
-            const newMin = [...min];
-            newMin[index] = value;
-            setMin(newMin);
-        }
-    };
-
-    const handleSelectedValue = (event, newValue) => {
-        setSelectedValue(newValue);
+    const handleSelectedValue = (event, newValue, index) => {
+        const newMedications = [...medications];
+        newMedications[index] = newValue;
+        setMedications(newMedications);
     }
-
 
     const handleChange = (event, value) => {
         setDrugName(value);
     }
 
-    const handleTimesChange = (e) => {
-        setTime(e.target.value);
-        console.log(times);
-    }
-
     useEffect(() => {
-
         async function foo() {
             return FetchMedication({
                 drugName: drugName
@@ -69,51 +32,32 @@ const AddMedication = () => {
         foo().then((data) => {
             setOptionList(data[1]);
         })
-
     }, [drugName]);
 
-
-    const generateTimers = () => {
-        const timerComponents = [];
-        for (let i = 0; i < times; i++) {
-            timerComponents.push(
-                <div key={i}>
-                    <span style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', marginBottom: '2vh' }}>
-                        Reminder {i + 1}
-                        <TimePicker
-                            options={timeHourOptions}
-                            value={hour[i]}
-                            onChange={(newHour) => handleTimeChange(i, 'hour', newHour)}
-                            label="Hr"
-                        />
-                        :
-                        <TimePicker
-                            options={timeMinOptions}
-                            value={min[i]}
-                            onChange={(newMin) => handleTimeChange(i, 'min', newMin)}
-                            label="Min"
-                        />
-                    </span>
-                </div>
-            );
-        }
-        return timerComponents;
+    const addMedicationForm = () => {
+        setMedications([...medications, null]);
     }
 
-    return (
-        <>
-            <div className="add-medication-container">
+    const removeMedicationForm = (index) => {
+        const newMedications = [...medications];
+        newMedications.splice(index, 1);
+        setMedications(newMedications);
+    }
+
+    const generateMedicationsForms = () => {
+        return medications.map((medication, index) => (
+            <div key={index} style={{ display: 'flex', flexDirection: 'row', marginTop: '-3vh', overflow: "visible" }} className={"new-medication-form"}>
                 <div className="autocomplete-container">
                     <Autocomplete
                         disablePortal
-                        id="combo-box-demo"
+                        id={`combo-box-demo-${index}`}
                         className="autocomplete-form"
                         options={optionList}
-                        value={selectedValue}
-                        onChange={handleSelectedValue}
+                        value={medication}
+                        onChange={(event, newValue) => handleSelectedValue(event, newValue, index)}
                         onInputChange={handleChange}
                         sx={{
-                            width: '80vw',
+                            width: '60vw',
                             '& .MuiOutlinedInput-root': {
                                 '& fieldset': {
                                     border: 'none', // Remove the border
@@ -132,26 +76,28 @@ const AddMedication = () => {
                         renderInput={(params) => <TextField {...params} label="Medication" />}
                     />
                 </div>
-
-                <div className="add-medication-para-container">
-                    <p>I take this medication <input type="text" value={times} onChange={handleTimesChange} placeholder="2" /> times a day</p>
+                <div className="remove-button">
+                    <button onClick={() => removeMedicationForm(index)}>x</button>
                 </div>
+            </div>
+        ));
+    }
 
-
-                <div className="add-medication-reminder-section">
-                    <p>
-                        I want to be reminded to take this medication at
-                    </p>
+    return (
+        <>
+            <div className="add-medication-container">
+                {generateMedicationsForms()}
+                <div className="add-medication-button-container">
+                    <button onClick={addMedicationForm}>Add Medication</button>
                 </div>
-                {generateTimers()}
-
-                <p>Selected value = {selectedValue}</p>
-                <p>Selected times = {hour[0]} : {min[0]}</p>
             </div>
 
+
+            <div className="next-button-container">
+                <button>Next</button>
+            </div>
         </>
     )
 }
-
 
 export default AddMedication;
