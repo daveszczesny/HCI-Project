@@ -1,17 +1,13 @@
-import { useState } from "react";
+import React from "react";
 
-const GenerateWeekForm = () => {
-
-    const [checkboxes, setCheckboxes] = useState([false, false, false, false, false, false, false]);
-    const handleNumberChange = (index, value) => {
-        const newCheckboxes = [...checkboxes];
-        newCheckboxes[index] = value > 0;
-        setCheckboxes(newCheckboxes);
-    };
-
+const GenerateWeekForm = ({
+    checkboxes, 
+    handleNumberChange,
+    setCheckboxes,
+}) => {
     return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day, index) => {
         return (
-            <div key={index} className={'week-button-container'} style={{ display: 'flex', flexDirection: 'row' }}>
+            <div key={index} className={'week-button-container'} style={{display: 'flex', flexDirection: 'row'}}>
                 <p>Times on {day}</p>
                 <input
                     type="checkbox"

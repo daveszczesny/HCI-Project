@@ -11,7 +11,7 @@
     border-radius: 15px;
     box-sizing: border-box;
     box-shadow: 0px 0px 3px 0.1px;
-    margin-top: 12vh;
+    margin-top: 11vh;
 
 }
 
@@ -270,3 +270,4 @@
 .week-button-container input[type="number"]:focus {
     outline: none;
 }
+

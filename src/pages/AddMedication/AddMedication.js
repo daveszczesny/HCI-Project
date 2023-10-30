@@ -1,15 +1,21 @@
 
 import { useEffect, useState } from "react"
 import FetchMedication from "../../script/fetch_data_url";
-import { Autocomplete, TextField } from "@mui/material";
 import './AddMedication.css'
+
+import AutocompleteMedication from "../../components/AddMedicationComponents/AutocompleteMedication";
+import PreviewMedicationAdded from "../../components/AddMedicationComponents/PreviewMedicationAdded";
 
 const AddMedication = () => {
 
     const [drugName, setDrugName] = useState("");
     const [optionList, setOptionList] = useState([""]);
     const [medications, setMedications] = useState([null]); // Store selected medications for each form
+    const [checkboxes, setCheckboxes] = useState([false, false, false, false, false, false, false]);
+    const [checboxValues, setCheckboxValues] = useState([0, 0, 0, 0, 0, 0, 0]); // Store amount to take per given day
 
+
+    const [previewMedications, setPreviewMedications] = useState([]);
 
     const handleSelectedValue = (event, newValue, index) => {
         const newMedications = [...medications];
@@ -33,6 +39,19 @@ const AddMedication = () => {
     }, [drugName]);
 
     const addMedicationForm = () => {
+        if (medications.length <= 0) {
+            setMedications([...medications, null]);
+            return;
+        }
+        setPreviewMedications(
+            [...previewMedications, <PreviewMedicationAdded key={medications[0]} medication={medications[0]} values={checboxValues} />])
+
+        medications.pop();
+
+        // Reset the checkboxes
+        setCheckboxes([false, false, false, false, false, false, false]);
+        setCheckboxValues([0, 0, 0, 0, 0, 0, 0]);
+
         setMedications([...medications, null]);
     }
 
@@ -43,92 +62,40 @@ const AddMedication = () => {
     }
 
 
-    const [checkboxes, setCheckboxes] = useState([false, false, false, false, false, false, false]);
     const handleNumberChange = (index, value) => {
         const newCheckboxes = [...checkboxes];
         newCheckboxes[index] = value > 0;
+
+        const newValue = [...checboxValues];
+        newValue[index] = value;
+        setCheckboxValues(newValue);
         setCheckboxes(newCheckboxes);
     };
-
-
-    const GenerateWeekForm = () => {
-        return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day, index) => {
-            return (
-                <div key={index} className={'week-button-container'} style={{display: 'flex', flexDirection: 'row'}}>
-                    <p>Times on {day}</p>
-                    <input
-                        type="checkbox"
-                        checked={checkboxes[index]}
-                        onChange={() => {
-                            const newChecboxes = [...checkboxes];
-                            newChecboxes[index] = !checkboxes[index];
-                            setCheckboxes(newChecboxes);
-                        }} />
-                    <input
-                        type="number"
-                        placeholder="0"
-                        onChange={(e) => handleNumberChange(index, parseInt(e.target.value))} />
-
-                </div>
-            )
-        })
-    }
-
-    const generateMedicationsForms = () => {
-        return medications.map((medication, index) => (
-            <div key={index} style={{ display: 'flex', flexDirection: 'column', marginTop: '-3vh', overflow: "visible" }} className={"new-medication-form"}>
-                <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
-                    <div className="autocomplete-container">
-                        <Autocomplete
-                            disablePortal
-                            id={`combo-box-demo-${index}`}
-                            className="autocomplete-form"
-                            options={optionList}
-                            value={medication}
-                            onChange={(event, newValue) => handleSelectedValue(event, newValue, index)}
-                            onInputChange={handleChange}
-                            sx={{
-                                width: '60vw',
-                                '& .MuiOutlinedInput-root': {
-                                    '& fieldset': {
-                                        border: 'none', // Remove the border
-                                    },
-                                    '&:hover fieldset': {
-                                        border: 'none', // Remove the border on hover
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        border: 'none', // Remove the border on focus
-                                    },
-                                    '&.Mui-focused': {
-                                        boxShadow: 'none', // Remove the box-shadow on focus
-                                    },
-                                },
-                            }}
-                            renderInput={(params) => <TextField {...params} label="Medication" />}
-                        />
-                    </div>
-                    <div className="remove-button">
-                        <button onClick={() => removeMedicationForm(index)}>x</button>
-                    </div>
-                </div>
-                <div>
-                    {medication && GenerateWeekForm()}
-                </div>
-            </div>
-        ));
-    }
 
     return (
         <>
             <div className="add-medication-container">
-                {generateMedicationsForms()}
+
+                <h3>Add all your medications</h3>
+                {previewMedications}
+                {AutocompleteMedication({
+                    medications: medications,
+                    optionList: optionList,
+                    handleSelectedValue: handleSelectedValue,
+                    handleChange: handleChange,
+                    removeMedicationForm: removeMedicationForm,
+                    checkboxes: checkboxes,
+                    setCheckboxes: setCheckboxes,
+                    handleNumberChange
+                })}
                 <div className="add-medication-button-container">
                     <button onClick={addMedicationForm}>Add Medication</button>
                 </div>
             </div>
 
 
-            <div className="next-button-container">
+            <div className="next-button-container" style={{ display: 'flex' }}>
+                <p style={{ marginRight: '3vw' }}>When your finished press</p>
                 <button>Next</button>
             </div>
 
