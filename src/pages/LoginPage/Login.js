@@ -3,6 +3,7 @@ import './Login.css'
 import SignUp_User from "../../script/auth_signup_password";
 import SignIn_User from "../../script/auth_signin_password";
 import { Navigate, useNavigate } from "react-router-dom";
+import FirestoreSetup from "../../script/firestore_doc_setup";
 
 const LoginPage = () => {
 

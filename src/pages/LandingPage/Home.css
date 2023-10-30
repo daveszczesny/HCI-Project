@@ -141,6 +141,16 @@ body {
     justify-content: end;
 }
 
+
+.RefillIconDiv img {
+    width: 145px;
+    height: auto;
+
+    margin-left: 10vw;
+    
+    transform: translateY(3vh);
+}
+
 .RefillInfoDiv {
     width: 50%;
     display: flex;

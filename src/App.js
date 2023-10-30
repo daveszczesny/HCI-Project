@@ -9,18 +9,20 @@ import Stats from './pages/Stats/Stats.js'; // Import your Stats component
 import Login from './pages/LoginPage/Login.js';
 
 import appFirebase from './FirebaseApp';
+import FirstLandingPage from './pages/FirstLandingPage/FirstLandingPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<FirstLandingPage />} />
         <Route path="/About" element={<About />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/add-medications" element={<AddMedication />} />
-        {/* <Route path="/Calendar" element={<Calendar />} /> */}
+        <Route path="/Calendar" element={<Calendar />} />
         <Route path="/Stats" element={<Stats />} />
         <Route path="/login" element={<Login />}/>
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );

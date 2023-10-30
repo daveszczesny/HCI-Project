@@ -178,7 +178,7 @@ body{
 }
 
 .signup-button-container {
-
+    display: flex;
     padding: 3vw;
 }
 

@@ -5,8 +5,14 @@ import './AddMedication.css'
 
 import AutocompleteMedication from "../../components/AddMedicationComponents/AutocompleteMedication";
 import PreviewMedicationAdded from "../../components/AddMedicationComponents/PreviewMedicationAdded";
+import FirestoreSetup from "../../script/firestore_doc_setup";
+import GetCurrentUserEmail from "../../script/auth_state_listener";
+import { useNavigate } from "react-router-dom";
 
 const AddMedication = () => {
+
+
+    const navigate = useNavigate();
 
     const [drugName, setDrugName] = useState("");
     const [optionList, setOptionList] = useState([""]);
@@ -14,8 +20,11 @@ const AddMedication = () => {
     const [checkboxes, setCheckboxes] = useState([false, false, false, false, false, false, false]);
     const [checboxValues, setCheckboxValues] = useState([0, 0, 0, 0, 0, 0, 0]); // Store amount to take per given day
 
-
     const [previewMedications, setPreviewMedications] = useState([]);
+
+    const [dataMedication, setDataMedication] = useState([]);
+
+    const [email, setEmail] = useState(null);
 
     const handleSelectedValue = (event, newValue, index) => {
         const newMedications = [...medications];
@@ -38,11 +47,33 @@ const AddMedication = () => {
         })
     }, [drugName]);
 
+
+    useEffect(() => {
+        GetCurrentUserEmail().then((user) => {
+            setEmail(user.email);
+        })
+
+    }, []);
+
     const addMedicationForm = () => {
         if (medications.length <= 0) {
             setMedications([...medications, null]);
             return;
         }
+
+        const sum = checboxValues.reduce((acc, currentValue) => acc + currentValue + 0);
+        if(sum <= 0){
+            alert("Cannot add a medication you don't take");
+            return;
+        }
+
+        const medData = {
+            name: medications[0],
+            values: checboxValues
+        }
+
+        setDataMedication([...dataMedication, medData]);
+
         setPreviewMedications(
             [...previewMedications, <PreviewMedicationAdded key={medications[0]} medication={medications[0]} values={checboxValues} />])
 
@@ -72,6 +103,33 @@ const AddMedication = () => {
         setCheckboxes(newCheckboxes);
     };
 
+
+    const UploadMedication = () => {
+        console.log("Uploading medication to cloud");
+
+        if (dataMedication.length <= 0) {
+            console.log("No medications added");
+            return;
+        }
+
+
+        for(const med of dataMedication){
+            const sum = med.values.reduce((acc, currentValue) => acc + currentValue, 0);
+
+            if(sum <= 0){
+                alert("One of your medications is empty; cannot add an empty medication");
+                return;
+            }
+        }
+        FirestoreSetup({
+            email: email,
+            medication: dataMedication
+        }).then(() => {
+            navigate("/home");
+        })
+
+    }
+
     return (
         <>
             <div className="add-medication-container">
@@ -95,8 +153,8 @@ const AddMedication = () => {
 
 
             <div className="next-button-container" style={{ display: 'flex' }}>
-                <p style={{ marginRight: '3vw' }}>When your finished press</p>
-                <button>Next</button>
+                <p style={{ marginRight: '3vw' }}>When you're finished press</p>
+                <button onClick={UploadMedication}>Next</button>
             </div>
 
         </>

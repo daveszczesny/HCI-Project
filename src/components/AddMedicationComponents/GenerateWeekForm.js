@@ -5,7 +5,7 @@ const GenerateWeekForm = ({
     handleNumberChange,
     setCheckboxes,
 }) => {
-    return ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day, index) => {
+    return ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((day, index) => {
         return (
             <div key={index} className={'week-button-container'} style={{display: 'flex', flexDirection: 'row'}}>
                 <p>Times on {day}</p>

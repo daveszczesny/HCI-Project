@@ -121,7 +121,7 @@ function Home() {
             {/* Div For Refill */}
             <div className='RefillDiv'>
                 <div className='RefillIconDiv'>
-                    <img src={SampleRefillPic} />
+                    <img src={SampleRefillPic}/>
                 </div>
                 <div className='RefillInfoDiv'>
                     <div className='RefillTextDiv'>

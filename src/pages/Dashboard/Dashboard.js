@@ -4,6 +4,7 @@ import './Dashboard.css';
 import NurseImage from '../../Resources/Images/nurse.png';
 import GetCurrentUserEmail from "../../script/auth_state_listener";
 import GetDocViaEmail from "../../script/firestore_doc_viaemail";
+import Home from "../LandingPage/Home";
 
 const Dashboard = () => {
     const [authenticated, setauthenticated] = useState(null);
@@ -18,19 +19,18 @@ const Dashboard = () => {
         const loggedInUser = localStorage.getItem("authenticated");
         if (loggedInUser) {
             setauthenticated(loggedInUser);
+
+            GetCurrentUserEmail().then(async(user) => {
+                const docSnap = await GetDocViaEmail(user.email);
+    
+                if(docSnap.exists()){
+                    setUserNew(false);
+                }else{
+                    setUserNew(true);
+                }
+    
+            })
         }
-
-       
-        GetCurrentUserEmail().then(async(user) => {
-            const docSnap = await GetDocViaEmail(user.email);
-
-            if(docSnap.exists()){
-                setUserNew(false);
-            }else{
-                setUserNew(true);
-            }
-
-        })
 
 
     }, []);
@@ -51,13 +51,7 @@ const Dashboard = () => {
     }, []);
 
 
-    if (!authenticated) {
-        <Navigate replace to="/Login" />
-    }
-
-
     const AddMedication = () => {
-        console.log("sending to add medications");
         return navigate('/add-medications');
     }
 
@@ -74,7 +68,7 @@ const Dashboard = () => {
     }else{
 
         return (
-            <p>This part is not done yet. This means that you should have already entered some of your medications</p>
+            <Home />
         )
     }
 
