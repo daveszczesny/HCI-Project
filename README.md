@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Medi Guardian
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Medi Guardian is a prototype web application developed as part of a Human-Computer Interaction College Project,
+It was developed using React by Dave, Brian, and Tomasz.
+
+The purpose of this web application is to reduce medication non-adherance, which is a big reason to why many treatments fail.
 
 ## Available Scripts
 
