@@ -6,6 +6,9 @@ import Dashboard from './pages/Dashboard/Dashboard.js'; // Import your Dashboard
 import AddMedication from './pages/AddMedication/AddMedication.js'; // Import your AddMedication component
 import Calendar from './pages/Calendar/Calendar.js'; // Import your Calendar component
 import Stats from './pages/Stats/Stats.js'; // Import your Stats component
+import Login from './pages/LoginPage/Login.js';
+
+import appFirebase from './FirebaseApp';
 
 function App() {
   return (
@@ -15,8 +18,9 @@ function App() {
         <Route path="/About" element={<About />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/add-medications" element={<AddMedication />} />
-        <Route path="/Calendar" element={<Calendar />} />
+        {/* <Route path="/Calendar" element={<Calendar />} /> */}
         <Route path="/Stats" element={<Stats />} />
+        <Route path="/login" element={<Login />}/>
       </Routes>
     </BrowserRouter>
   );

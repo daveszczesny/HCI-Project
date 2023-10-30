@@ -4,12 +4,6 @@ import SignUp_User from "../../script/auth_signup_password";
 import SignIn_User from "../../script/auth_signin_password";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
-
-
-
-
-
 const LoginPage = () => {
 
     const [showLoginForm, setShowLoginForm] = useState(false);

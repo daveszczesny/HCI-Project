@@ -1,5 +1,8 @@
 body {
     background-color: rgba(177, 210, 250, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header, .welcomeUser {
@@ -42,7 +45,7 @@ body {
     justify-content: space-around;     
 }
 
-button {
+.homeDiv button {
     width: 70px;
 }
 

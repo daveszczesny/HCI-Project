@@ -178,9 +178,6 @@ body{
 }
 
 .signup-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     padding: 3vw;
 }
@@ -191,6 +188,7 @@ body{
     padding-top: 3vw;
     padding-bottom: 3vw;
 
+    white-space: nowrap;
     font-size: 1.2em;
 
     border: none;
