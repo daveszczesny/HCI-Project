@@ -5,13 +5,18 @@ async function GetCurrentUserEmail() {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                resolve(user);
+                setTimeout(()=>{
+                    resolve(user);
+                }, 40)
             } else {
-                reject("User not found");
+                setTimeout(() => {
+                    reject("User not found");
+                }, 40)
             }
         })
     })
 }
+
 
 
 export default GetCurrentUserEmail;

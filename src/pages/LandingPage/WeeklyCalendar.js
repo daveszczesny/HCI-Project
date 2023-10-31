@@ -2,13 +2,19 @@ import React from 'react';
 import './WeeklyCalendar.css'
 
 function WeeklyCalendar({ events }) {
-  const daysOfWeek = ['Today', 'Tomorrow', 'Next'];
+  const daysWeek =["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const daysOfWeek = ['Today', 'Tomorrow', daysWeek[new Date().getDay() + 2]];
+
+
+  const day = [
+    "Today", "Tomorrow", daysWeek[new Date().getDay() + 2]
+  ];
 
   return (
     <table className="weekly-calendar">
       <thead>
         <tr>
-          {daysOfWeek.map((day, index) => (
+          {day.map((day, index) => (
             <th key={index}>{day}</th>
           ))}
         </tr>

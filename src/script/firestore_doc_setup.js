@@ -8,7 +8,7 @@ async function FirestoreSetup({
     const db = getFirestore();
    
     const docRef = doc(db, "users", email);
-    return await setDoc(docRef, {medications: medication})
+    return await setDoc(docRef, {medications: medication}, {merge: true})
 }
 
 

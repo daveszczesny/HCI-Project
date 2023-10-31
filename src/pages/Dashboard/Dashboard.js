@@ -10,6 +10,8 @@ const Dashboard = () => {
     const [authenticated, setauthenticated] = useState(null);
     const [isUserNew, setUserNew] = useState(true);
     const navigate = useNavigate();
+    
+    const [userEmail, setUserEmail] = useState(null);
     const [typedText, setTypedText] = useState('');
 
     let targetText = "Hi I'm Nurse Kelly. I see that we don't have your medications on record. How about we add them now?"
@@ -17,19 +19,15 @@ const Dashboard = () => {
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("authenticated");
-        if (loggedInUser) {
-            setauthenticated(loggedInUser);
+        const loggedInUserEmail = localStorage.getItem("userEmail");
 
-            GetCurrentUserEmail().then(async(user) => {
-                const docSnap = await GetDocViaEmail(user.email);
-    
-                if(docSnap.exists()){
-                    setUserNew(false);
-                }else{
-                    setUserNew(true);
-                }
-    
-            })
+
+        if (loggedInUser && loggedInUserEmail != null) {
+            setauthenticated(loggedInUser);
+            setUserEmail(loggedInUserEmail);
+
+        }else{
+            console.log("user not found");
         }
 
 
@@ -52,7 +50,7 @@ const Dashboard = () => {
 
 
     const AddMedication = () => {
-        return navigate('/add-medications');
+        return navigate('/add-medications?name');
     }
 
     if(isUserNew)

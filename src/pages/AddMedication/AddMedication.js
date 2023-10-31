@@ -6,7 +6,6 @@ import './AddMedication.css'
 import AutocompleteMedication from "../../components/AddMedicationComponents/AutocompleteMedication";
 import PreviewMedicationAdded from "../../components/AddMedicationComponents/PreviewMedicationAdded";
 import FirestoreSetup from "../../script/firestore_doc_setup";
-import GetCurrentUserEmail from "../../script/auth_state_listener";
 import { useNavigate } from "react-router-dom";
 
 const AddMedication = () => {
@@ -49,11 +48,12 @@ const AddMedication = () => {
 
 
     useEffect(() => {
-        GetCurrentUserEmail().then((user) => {
-            setEmail(user.email);
-        })
 
-    }, []);
+        const loggedInUserEmail = localStorage.getItem("userEmail");
+        
+        setEmail(loggedInUserEmail);
+
+    }, [email]);
 
     const addMedicationForm = () => {
         if (medications.length <= 0) {

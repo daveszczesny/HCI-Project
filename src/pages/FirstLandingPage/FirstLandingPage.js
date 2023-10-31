@@ -13,30 +13,22 @@ import Home from "../LandingPage/Home.js";
 const FirstLandingPage = () => {
 
     const [authenticated, setauthenticated] = useState(null);
-
+    const [userEmail, setUserEmail] = useState(null);
     const [isUserNew, setUserNew] = useState(true);
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("authenticated");
-        if (loggedInUser) {
+        const loggedInUserEmail = localStorage.getItem("userEmail");
+        
+        if (loggedInUser && loggedInUserEmail !== null) {
             setauthenticated(loggedInUser);
-
-            GetCurrentUserEmail().then(async (user) => {
-                const docSnap = await GetDocViaEmail(user.email);
-
-                if (docSnap.exists()) {
-                    setUserNew(false);
-                } else {
-                    setUserNew(true);
-                }
-
-            })
+            setUserEmail(loggedInUserEmail);
         }
 
 
     }, []);
 
-    if (isUserNew) {
+    if (!authenticated) {
         return (
             <FirstTimeUser />
         )

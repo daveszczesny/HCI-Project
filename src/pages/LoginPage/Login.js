@@ -4,6 +4,7 @@ import SignUp_User from "../../script/auth_signup_password";
 import SignIn_User from "../../script/auth_signin_password";
 import { Navigate, useNavigate } from "react-router-dom";
 import FirestoreSetup from "../../script/firestore_doc_setup";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 const LoginPage = () => {
 
@@ -16,6 +17,8 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated") || false));
+    const [userEmail, setUserEmail] = useState(localStorage.getItem(localStorage.getItem("userEmail") || null));
+    const db = getFirestore();
 
     const SignUp = (e) => {
         e.preventDefault();
@@ -26,10 +29,16 @@ const LoginPage = () => {
             email: email,
             password: password
         })
-
+        setUserEmail(email);
         setauthenticated(true);
         localStorage.setItem("authenticated", true);
+        localStorage.setItem("userEmail", email);
 
+        (async () => {
+            await setDoc(doc(db, "users", email), 
+                {medications: {}}, {merge: true}
+            );
+        })();
 
         navigate("/dashboard");
 
