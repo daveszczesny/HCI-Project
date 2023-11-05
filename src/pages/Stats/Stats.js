@@ -1,4 +1,6 @@
 import './Stats.css';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import React, { useEffect, useState } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 var CanvasJS = CanvasJSReact.CanvasJS;
@@ -36,7 +38,7 @@ function Stats() {
         Next: ['Pills'],
     };
 
-     const options = {
+    const options = {
             animationEnabled: true,
             exportEnabled: false,
             interactivityEnabled: false,
@@ -55,7 +57,7 @@ function Stats() {
                 titleFontColor: "black",
                 labelFontColor: "black",
                 interval: 1,
-                 labelFormatter: function (e) {
+                labelFormatter: function (e) {
                     const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
                     if (labels[e.value]) {
                         return labels[e.value];
