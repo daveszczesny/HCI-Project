@@ -22,25 +22,38 @@ const CalendarPage = () => {
         return new Intl.DateTimeFormat('en-US', { month: 'long' }).format(date);
     };
 
-    const markedDays = {
-        "2023-11-06": 0, // Assuming Monday is represented as 0 in your data
-        "2023-11-08": 2, // Wednesday is represented as 2, etc.
-    };
+    const isEverySecondDay = (date) => date.getDate() % 2 === 0;
+    const isOnceAWeek = (date) => date.getDay() === 0; // 0 is Sunday
 
     const insertScheduleIntoCalendar = ({date, view}) => {
-        const day = date.getDay();
         const dateKey = date.toISOString().split('T')[0];
-        const firebaseValue = markedDays[dateKey];
-        console.log(markedDays[dateKey]);
+        const elements = [];
 
+        // Pill to take every day
+        elements.push(<div className='dot red'></div>);
 
-            if (firebaseValue == day) {
-                console.log("yes");
-                return <div className="dot"></div>; 
-            } else {
-                console.log(day);
-            }
-    return null;
+        // Pill to take every second day
+        if (isEverySecondDay(date)) {
+            elements.push(<div className='dot blue'></div>);
+        }
+
+        // Pill to take once a week
+        if (isOnceAWeek(date)) {
+            elements.push(<div className='dot green'></div>);
+        }
+
+        // Refill day on the 10th
+        if (date.getDate() === 10) {
+            elements.push(<div className='triangleRed'></div>);
+        }
+
+        // Refill day on the last day of the month
+        const nextDay = new Date(date.getTime() + 24 * 60 * 60 * 1000);
+        if (nextDay.getMonth() !== date.getMonth()) {
+            elements.push(<div className='triangleBlue'></div>);
+        }
+
+        return elements;
     };
 
     return (
@@ -55,6 +68,25 @@ const CalendarPage = () => {
                 {...options}
             />
         </div>
+            <h4>Legend</h4>
+        <table className='legend'>
+            <tr>
+                <td><div className='dot red'></div></td>
+                <td>The Pill</td>
+            </tr>
+            <tr>
+                <td><div className='dot blue'></div></td>
+                <td>Back Pain Pill</td>
+            </tr>
+            <tr>
+                <td><div className='dot green'></div></td>
+                <td>Dementia Pill</td>
+            </tr>
+            <tr>
+                <td><div className='triangle'></div></td>
+                <td>Refill Day</td>
+            </tr>
+        </table>
         </>
     );
 };

@@ -1,105 +1,89 @@
-import './Stats.css';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import './Stats.css';
 
-function Stats() {
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-    const [prescriptions, prescritpionStats] = useState([]);
+const Stats = () => {
+    // Hardcoded data for Xanax and Xanaxr for each day of the week
+    const xanaxData = [
+        { label: 'Monday', y: 2 },
+        { label: 'Tuesday', y: 4 },
+        { label: 'Wednesday', y: 6 },
+        { label: 'Thursday', y: 3 },
+        { label: 'Friday', y: 5 },
+        { label: 'Saturday', y: 7 },
+        { label: 'Sunday', y: 9 },
+    ];
 
+    const thePill = [
+        { label: 'Monday', y: 1 },
+        { label: 'Tuesday', y: 3 },
+        { label: 'Wednesday', y: 5 },
+        { label: 'Thursday', y: 2 },
+        { label: 'Friday', y: 4 },
+        { label: 'Saturday', y: 6 },
+        { label: 'Sunday', y: 8 },
+    ];
 
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //         try {
-    //             const prescritpionData = await Firebase.getPrescriptionData();
-    //             setPrescriptions(prescritpionData);
-    //         } catch (error) {
-    //             console.error("Error fetching Prescription Data: ", error);
-    //         }
-    //     };
-
-    //     fetch();
-    // }, []);
-
-
-
-
-
-
-
-
-
-    const events = {
-        Today: ['Poop Pills', 'Steroids'],
-        Tomorrow: ['Xanax'],
-        Next: ['Pills'],
+    const chartOptions = {
+        height: 115,
+        width: 350,
+        backgroundColor: "rgba(126, 220, 241, 1)",
+        axisY: {
+            interval: 2,
+        },
+        data: [
+            {
+                type: 'line',
+                dataPoints: xanaxData,
+            },
+        ],
     };
 
-    const options = {
-            animationEnabled: true,
-            exportEnabled: false,
-            interactivityEnabled: false,
-            width: 350,
-            height: 130,
-            theme: "light2",
-            backgroundColor: "rgba(126, 220, 241, 1)",
-            axisY: {
-                title: "No. Taken",
-                titleFontColor: "black",
-                labelFontColor: "black",
-                interval: 2
+
+    const chartOptionsXanaxr = {
+        height: 115,
+        width: 350,
+        backgroundColor: "rgba(126, 220, 241, 1)",
+        axisY: {
+            interval: 2,
+        },
+        data: [
+            {
+                type: 'line',
+                dataPoints: thePill,
             },
-            axisX: {
-                title: "Days",
-                titleFontColor: "black",
-                labelFontColor: "black",
-                interval: 1,
-                labelFormatter: function (e) {
-                    const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-                    if (labels[e.value]) {
-                        return labels[e.value];
-                    }
-                },
-            },
-            data:[{
-                type: "line",
-                toolTipContent: "Day {x}: {y}%",
-                dataPoints: [
-                    {x: 0, y: 5},
-                    {x: 1, y: 1},
-                    {x: 2, y: 5},
-                    {x: 3, y: 4},
-                    {x: 4, y: 2},
-                    {x: 5, y: 5},
-                    {x: 6, y: 5}
-                ],
-                lineColor: "darkBlue", 
-                markerColor: "darkBlue"
-            }]
-        }  
-        return(
-            <>
-            {/* Title Of the Page */}
-            <div className='titleDiv'>
-                <h1>Stats</h1>
+        ],
+    };
+
+    return (
+        <div className='statsContainer'>
+            <h1>Stats</h1>
+            <h3>Medication Consumption Frequency</h3>
+
+            <div className='StatsDiv'>
+                <h3>Xanax</h3>
+                <div className='StatsGraphDiv'>
+                    <CanvasJSChart options={chartOptions}/>
+                </div>
             </div>
 
-            <div>
-                {prescriptions.map((prescription, index) => {
-                    <div className='StatsDiv' key={index}>
-                        <div className='StatsTitle'>
-                            {prescription.name}
-                        </div>
-                        <div className='StatsGraphDiv'>
-                            <CanvasJSChart prescritpionData={prescription}/>
-                        </div>
-                    </div>
-                })}
+            <div className='StatsDiv'>
+                <h3>The Pill</h3>
+                <div className='StatsGraphDiv'>
+                    <CanvasJSChart options={chartOptionsXanaxr} />
                 </div>
-            </>
-    )
-}
+            </div>
+
+            <div className='StatsDiv'>
+                <h3>Back Pain Medication</h3>
+                <div className='StatsGraphDiv'>
+                    <CanvasJSChart options={chartOptionsXanaxr} />
+                </div>
+            </div>
+        </div>
+    );
+};
+
 export default Stats;
