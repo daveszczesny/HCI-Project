@@ -31,6 +31,9 @@ function Home() {
 
     useEffect(() => {
 
+
+        alert("This is a prototype program, develoepd specifically for the iphone 13 aspect ratio. Using a different device might result in unexpected results!");
+
         const loggedInUserEmail = localStorage.getItem("userEmail");
 
         if (loggedInUserEmail !== null) {
@@ -46,12 +49,8 @@ function Home() {
             (async () => {
                 const docSnap = await GetDocViaEmail(userEmail);
                 if (docSnap !== null) {
-                    // console.log(docSnap.data()["medications"][0]["name"]);
-                    // setMedication(prevMedication => [
-                    //     ...prevMedication, docSnap.data()["medications"]
-                    // ])
+
                     setMedication([...docSnap.data()["medications"]])
-                    console.log(docSnap.data()["medications"])
                 }
 
             })();

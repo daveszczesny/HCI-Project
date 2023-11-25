@@ -16,8 +16,7 @@ const CalendarPage = () => {
         showNavigation: false,
         next2Label: null,
         prev2Label: null,
-        defaultView: "month",
-        onClickDay: console.log("hi")
+        defaultView: "month"
     };
 
     // Function to get the current month 
