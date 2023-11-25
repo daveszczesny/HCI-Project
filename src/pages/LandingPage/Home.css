@@ -217,6 +217,7 @@ body {
 
 /* CSS for adding a new med button  */
 .AddNewMedDiv {
+    position: absolute;
     background-color: azure;
     display: flex;
     align-items: center;
@@ -225,7 +226,6 @@ body {
     height: 50px; 
     border: 2px solid black;
     border-radius: 20px; 
-    position: fixed;
     top: 2%;
     right: 2%; /* Position in the bottom-right corner */
 }
@@ -245,6 +245,7 @@ body {
 
 /* CSS for About Button  */
 .AboutButton {
+    position: absolute;
     background-color: azure;
     display: flex;
     align-items: center;
@@ -253,7 +254,6 @@ body {
     height: 50px; 
     border: 2px solid black;
     border-radius: 20px;
-    position: fixed;
     top: 2%;
     left: 2%; /* Position in the bottom-left corner */
 }

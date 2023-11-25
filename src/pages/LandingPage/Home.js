@@ -98,7 +98,7 @@ function Home() {
                     events_[day] = []
                 }
                 // pushes the medication name and gets rid of brackets
-                if(reorderedMedication[i][day] !== null){
+                if( reorderedMedication[day]&& reorderedMedication[i][day] !== null){
                     
                     events_[day].push(reorderedMedication[i][day][0].split('(')[0]);
                 }
@@ -201,8 +201,8 @@ function Home() {
                     Have you taken your Meds Today?
                 </div>
                 <div className='takenMedsButtons'>
-                    <button>Yes</button>
-                    <button>No</button>
+                    <button onClick={() => console.log("Meds Taken")}>Yes</button>
+                    <button onClick={() => console.log("Meds Not Taken")}>No</button>
                     {/* popups for congrats and uh oh? */}
                 </div>
             </div>
@@ -261,7 +261,7 @@ function Home() {
 
             {/* Button to add new medication */}
             <div className='AddNewMedDiv'>
-                <button onClick={() => console.log("Clicked")}>
+                <button onClick={() => navigate('/add-medications')}>
                     +
                 </button>
             </div>
