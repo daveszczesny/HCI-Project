@@ -5,6 +5,9 @@ import 'react-calendar/dist/Calendar.css';
 
 
 const CalendarPage = () => {
+
+    alert("This is sample data, used to show proof of concept!");
+
     const [date, setDate] = useState(new Date()); // Set initial date
 
     // Options for the Calendar

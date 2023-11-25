@@ -5,6 +5,9 @@ import './Stats.css';
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const Stats = () => {
+
+    alert("This is sample data, used to show proof of concept!");
+
     // Hardcoded data for Xanax and Xanaxr for each day of the week
     const xanaxData = [
         { label: 'Monday', y: 2 },
