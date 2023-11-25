@@ -2,12 +2,15 @@ import React from 'react';
 import './WeeklyCalendar.css'
 
 function WeeklyCalendar({ events }) {
+
+  var tmrw = (new Date().getDay() + 2) % 7;
+
   const daysWeek =["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const daysOfWeek = ['Today', 'Tomorrow', daysWeek[new Date().getDay() + 2]];
+  const daysOfWeek = ['Today', 'Tomorrow', daysWeek[tmrw] ];
 
 
   const day = [
-    "Today", "Tomorrow", daysWeek[new Date().getDay() + 2]
+    "Today", "Tomorrow",  daysWeek[tmrw]
   ];
 
   return (

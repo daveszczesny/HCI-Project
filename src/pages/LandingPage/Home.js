@@ -3,12 +3,11 @@ import React from 'react';
 import SampleRefillPic from '../../img/sampleRefillPic.png';
 import { useState } from 'react';
 import WeeklyCalendar from './WeeklyCalendar';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CanvasJSReact from '@canvasjs/react-charts';
 import GetCurrentUserEmail from '../../script/auth_state_listener';
 import { useEffect } from 'react';
 import GetDocViaEmail from '../../script/firestore_doc_viaemail';
-import { getDoc } from 'firebase/firestore';
 
 
 var CanvasJS = CanvasJSReact.CanvasJS;
@@ -78,36 +77,45 @@ function Home() {
     // Set calender Events
     useEffect(() => {
         const reorderedMedication = reorderData();
+
+        // if null return
         if(reorderedMedication === null)
         {
             return;
         }
 
+        // Array to see which days we need to get from our medication array
         const daysToGet = [
             new Date().getDay() - 1 , // offset by one due to Monday start date
             new Date().getDay(),
             new Date().getDay() + 1
         ]
+        
+        // Given day 7, module to 0 for monday
+        for(let i = 0; i < daysToGet.length; i++){
+            daysToGet[i] %= 7;
+        }
+
 
         const events_ = {};
         
-        for(let i = 0; i < reorderedMedication.length; i++)
+        for(let i = 0; i < reorderedMedication.length; i++) // length = 7
         {
             daysToGet.forEach(day => {
+
+                // initializes events
                 if(!events_[day]){
                     events_[day] = []
                 }
                 // pushes the medication name and gets rid of brackets
                 if(reorderedMedication[i][day] !== null){
-                    
                     events_[day].push(reorderedMedication[i][day][0].split('(')[0]);
                 }
             })
         }
         const daysWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        
         const day = [
-            "Today", "Tomorrow", daysWeek[new Date().getDay() + 2]
+            "Today", "Tomorrow", daysWeek[(new Date().getDay() + 2) % 7]
         ];
 
         
@@ -115,7 +123,6 @@ function Home() {
         renamedEvents[day[0]] = events_[daysToGet[0]]
         renamedEvents[day[1]] = events_[daysToGet[1]]
         renamedEvents[day[2]] = events_[daysToGet[2]]
-
         setCalenderEvents(renamedEvents)
 
 
