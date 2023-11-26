@@ -41,7 +41,6 @@ const FirstTimeUser = () => {
         <div className="image-button-container">
             <img src={MrDoctor} alt="Doctor image" />
             <div className="button-container">
-                <Link className="first-link" to="/">Guest</Link>
                 <Link className="second-link" to="/Login">Sign up</Link>
             </div>
         </div>

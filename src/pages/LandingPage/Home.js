@@ -56,14 +56,13 @@ function Home() {
             })();
 
             (async () => {
-                try{
+                try {
                     GetCurrentUserEmail().then(user => {
-                        if(user)
-                        {
+                        if (user) {
                             setUser(user.displayName);
                         }
                     })
-                }catch(e){
+                } catch (e) {
                     // ignore error
                 }
             })();
@@ -78,36 +77,38 @@ function Home() {
         const reorderedMedication = reorderData();
 
         // if null return
-        if(reorderedMedication === null)
-        {
+        if (reorderedMedication === null) {
             return;
         }
 
         // Array to see which days we need to get from our medication array
+        // Starting day is Monday hence the offset
+        const today = new Date().getDay();
         const daysToGet = [
-            new Date().getDay() - 1 , // offset by one due to Monday start date
-            new Date().getDay(),
-            new Date().getDay() + 1
-        ]
-        
+            (today === 0 ? 6 : today - 1), // if today is Sunday (0), return 6 (Saturday)
+            today,
+            (today === 6 ? 0 : today + 1) // if today is Saturday (6), return 0 (Sunday)
+        ];
+
         // Given day 7, module to 0 for monday
-        for(let i = 0; i < daysToGet.length; i++){
+        for (let i = 0; i < daysToGet.length; i++) {
             daysToGet[i] %= 7;
         }
 
 
         const events_ = {};
-        
-        for(let i = 0; i < reorderedMedication.length; i++) // length = 7
+
+        for (let i = 0; i < reorderedMedication.length; i++) // length = 7
         {
             daysToGet.forEach(day => {
 
                 // initializes events
-                if(!events_[day]){
+                if (!events_[day]) {
                     events_[day] = []
                 }
+
                 // pushes the medication name and gets rid of brackets
-                if(reorderedMedication[i][day] !== null){
+                if (reorderedMedication[i][day] !== null) {
                     events_[day].push(reorderedMedication[i][day][0].split('(')[0]);
                 }
             })
@@ -117,7 +118,7 @@ function Home() {
             "Today", "Tomorrow", daysWeek[(new Date().getDay() + 2) % 7]
         ];
 
-        
+
         const renamedEvents = {};
         renamedEvents[day[0]] = events_[daysToGet[0]]
         renamedEvents[day[1]] = events_[daysToGet[1]]
@@ -253,7 +254,7 @@ function Home() {
                         Your next Refill is due on 17th October
                     </div>
                     <div className='LogRefillButton'>
-                        <button>Log a Refill</button>
+                        <button onClick={() => alert('Refill logged')}>Log a Refill</button>
                     </div>
                 </div>
             </div>
